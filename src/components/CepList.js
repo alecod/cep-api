@@ -3,24 +3,31 @@ import { useState, useRef } from 'react'
 
 // services
 import { getCepFromApi } from '../services/getCepFromApi'
+import { cepMask, removeCepMask } from '../services/cepMask'
 
  
 export const CepList = () => {
   const [cep, setCep] = useState()
   const inputCep = useRef()
 
-  const getCepFunction = () => {
-    const currentCepValue = inputCep.current.value
+  const getCep = () => {
+    const currentCepValue = removeCepMask(inputCep.current.value)
     getCepFromApi(currentCepValue).then((response)=> setCep(response.data))
     inputCep.current.value = ''
+  }
+
+  const inputTypeSetMask = (currentInputEvent) =>{
+    const currentInputValue = currentInputEvent.target.value
+    const currentInputValueMasked = cepMask(currentInputValue)
+    currentInputEvent.target.value = currentInputValueMasked
   }
 
   return (  
     <div className='container'>
         <div className='searchBox'>
           <form className='searchForm'>
-              <input type="text" className='searchInput' ref={inputCep} placeholder="Digite o CEP" />
-              <button type="button" onClick={getCepFunction} >Consultar CEP</button>
+              <input type="text" className='searchInput' ref={inputCep} placeholder="Digite o CEP" onInput={inputTypeSetMask}/>
+              <button type="button" onClick={getCep} >Consultar CEP</button>
           </form>
         </div>
         <div className='searchResult'>
