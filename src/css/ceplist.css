@@ -1,0 +1,45 @@
+.container{
+    height: 100vh;
+    max-width: 992px;
+    width: 95%;
+    margin: 0 auto;
+    padding: 2.5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.container .searchBox{
+    display: flex;
+    justify-content: center;
+}
+
+.container .searchBox input{
+    width: 300px;
+    height: 45px;
+    padding-left: 1rem;
+}
+.container .searchBox button{
+    width: 150px;
+    height: 45px;
+    margin-left: 0.6rem;
+    background: var(--blue);
+    color: var(--white);
+    border: none;
+    transition: ease-in-out 0.4s;
+}
+
+.container .searchBox button:hover{
+    background: var(--blue-dark) 
+}
+
+
+
+.container .searchResult{
+    border: 1px solid var(--title);
+    margin-top: 4rem;
+    padding: 1rem 1rem;
+}
+
+.container .searchResult p{
+    margin-bottom: 0.6em;
+}
